@@ -1,8 +1,8 @@
 package com.example.lesson6_homework;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +24,7 @@ public class NoteFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     public static final String ARG_NOTE = "note";
     private static Note currentNote;
+    private static Note previousNote;
     public static DataAccess da;
     public NoteFragment() {
         // Required empty public constructor
@@ -39,10 +40,13 @@ public class NoteFragment extends Fragment {
     }
     @Override
     public void onSaveInstanceState (@NonNull Bundle outState) {
-        String text=getView().findViewById(R.id.note_text).toString();
-        da.saveNote(currentNote.getNoteIndex(),text);
+        TextInputEditText ti = getView().findViewById(R.id.note_text);
+        String text=ti.getText().toString();
+        da.saveNote(previousNote.getNoteIndex(),text);
         super.onSaveInstanceState(outState);
     }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +56,16 @@ public class NoteFragment extends Fragment {
     }
 @Override
 public void onStop() {
-    TextInputEditText ti=getView().findViewById(R.id.note_text);
-    String text=ti.getText().toString();
-    da.saveNote(currentNote.getNoteIndex(),text);
+
+            TextInputEditText ti = getView().findViewById(R.id.note_text);
+            String text = ti.getText().toString();
+            da.saveNote(previousNote.getNoteIndex(), text);
     super.onStop();
 }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        previousNote=currentNote;
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_note, container, false);
         TextView noteNameView = view.findViewById(R.id.textView);
@@ -71,7 +77,7 @@ public void onStop() {
             ti.setText(text);
         }
         catch(RuntimeException e){
-              System.out.println(e);
+
         }
         return view;
     }

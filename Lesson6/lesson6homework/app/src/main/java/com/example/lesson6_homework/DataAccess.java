@@ -19,6 +19,7 @@ public class DataAccess {
         //db.execSQL("DROP TABLE notes");
         db.execSQL(String.format("CREATE TABLE IF NOT EXISTS %s (id INTEGER,note TEXT);",TABLE_NAME));
     }
+
     public String getNote(int id){
         String note="";
         Cursor query = db.rawQuery(String.format("SELECT * FROM %s WHERE id=?;",TABLE_NAME), new String[] {String.valueOf(id)});
