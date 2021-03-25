@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyStyle">
+        <item name="android:textSize">@dimen/button_text</item>
+        <item name="android:backgroundTint">@color/grey</item>
+    </style>
+    <style name="LightTheme" parent="Theme.Lesson3homework">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/purple_500</item>
+    </style>
+    <style name="DarkTheme" parent = "Theme.Lesson3homework">
+        <item name="android:background">@color/black</item>
+        <item name="android:textColor">@color/purple_200</item>
+    </style>
+</resources>

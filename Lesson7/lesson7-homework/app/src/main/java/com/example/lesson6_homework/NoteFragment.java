@@ -3,6 +3,7 @@ package com.example.lesson6_homework;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -31,6 +32,7 @@ public class NoteFragment extends Fragment {
     }
     public static NoteFragment newInstance (Note currentNote) {
         NoteFragment f = new NoteFragment();
+
 // создание
         // Передача параметра
         Bundle args = new Bundle();
@@ -46,7 +48,6 @@ public class NoteFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,6 @@ public class NoteFragment extends Fragment {
     }
 @Override
 public void onStop() {
-
             TextInputEditText ti = getView().findViewById(R.id.note_text);
             String text = ti.getText().toString();
             da.saveNote(previousNote.getNoteIndex(), text);
